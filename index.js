@@ -23,8 +23,6 @@ io.on('connection', function(socket){
 
 
 
-
-
 socket.on("like", function(number){
     num = number += 1;
     db.set("likeCount", num).then(() => {});
@@ -39,40 +37,19 @@ socket.on("like", function(number){
 
 
 
+// var fs = require('fs');
 
 
-var date_time = new Date().getSeconds();
-console.log(date_time);
+// let play = []; 
 
-const transporter = nodemailer.createTransport({
-  service: 'Hotmail',
-  auth: {
-    user: 'jumaAboke@outlook.com',
-    pass: 'Armstrongvenus21'
-  }
-});
-
-const mailOptions = {
-  from: 'jumaAboke@outlook.com',
-  to: 'jumaAboke@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-
-var fs = require('fs');
-
-
-let play = []; 
-
-try {  
-    var data = fs.readFileSync('sent.js', 'utf8');
-    play = JSON.parse(data.toString()); 
-    console.log(play)
+// try {  
+//     var data = fs.readFileSync('sent.js', 'utf8');
+//     play = JSON.parse(data.toString()); 
+//     console.log(play)
   
-} catch(e) {
-    console.log('Error:', e.stack);
-}
+// } catch(e) {
+//     console.log('Error:', e.stack);
+// }
 
 
 
