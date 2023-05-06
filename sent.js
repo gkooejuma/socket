@@ -1,0 +1,1 @@
+['let poop = function() {console.log()}']
