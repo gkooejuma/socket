@@ -4,64 +4,53 @@ const socketio = require("socket.io");
 const path = require("path");
 const app = express();
 const httpserver = http.Server(app);
-const io = socketio(httpserver);
-const gamedirectory = path.join(__dirname, "html");
+let io = socketio(httpserver);
+const gamedirectory = path.join(__dirname, "node-html");
 app.use(express.static(gamedirectory));
 httpserver.listen(3000);
-const Database = require("@replit/database")
-const db = new Database()
+const fs = require('fs');
 //----------------------------------
 
 // This is the server adding likes 
 io.on('connection', function(socket){
-  db.get("likeCount").then(value => {
-  console.log(value)
-    num = value; 
-    socket.emit("liked", num); 
-});
-
 
 //fsgsfgsfd
 
 socket.on("like", function(number){
     num = number += 1;
-    db.set("likeCount", num).then(() => {});
+    
     io.emit("liked", num)
   });
 }); 
- const nodemailer = require('nodemailer');
+
+app.get('/one/two', function (req, res) {
+  var url = req.url;
+}); 
+
+
+
+var request = require('request');
+request("http://localhost:3000/", {method: 'HEAD'}, function (err, res, body){
+});
 
 
 
 
 
+///0 dist compiler
+fs.readFile('dist/.request-node', 'utf8', function(err, data){
+  //console.log(err); 
+  fs.writeFile('dist/app.html', data, { flag: 'w+' }, err => {})
+});
 
 
-// var fs = require('fs');
 
-
-// let play = []; 
-
-// try {  
-//     var data = fs.readFileSync('sent.js', 'utf8');
-//     play = JSON.parse(data.toString()); 
-//     console.log(play)
+setInterval(() => {
+  fs.readFile('dist/.request-node', 'utf8', function(err, data){
+    //console.log(err); 
+    fs.writeFile('dist/app.html', data, { flag: 'w+' }, err => {})
+  });
   
-// } catch(e) {
-//     console.log('Error:', e.stack);
-// }
+}, 5000);
 
 
-
-// setInterval(function(){
-// transporter.sendMail(mailOptions, function(error, info){
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log('Email sent: ' + info.response);
-//   }
-// });
-// }, 10000); 
-  
-
-  
